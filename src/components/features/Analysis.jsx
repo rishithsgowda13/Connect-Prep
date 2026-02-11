@@ -35,10 +35,6 @@ const Analysis = () => {
 
     return (
         <div className="feature-container">
-            <div className="feature-header">
-                <h1>Answer Paper Analysis</h1>
-            </div>
-
             <div className="grid-container" style={{ gridTemplateColumns: '1fr' }}>
 
                 {/* Upload Section */}

@@ -30,15 +30,6 @@ const DoubtSolving = () => {
 
     return (
         <div className="feature-container">
-            <div className="feature-header">
-                <h1>1-to-1 Doubt Solving</h1>
-                {!askMode && (
-                    <button className="login-btn" style={{ width: 'auto', padding: '0.5rem 1rem' }} onClick={() => setAskMode(true)}>
-                        <Video size={18} style={{ marginRight: '8px' }} /> Connect with Tutor
-                    </button>
-                )}
-            </div>
-
             {askMode ? (
                 <div className="grid-container" style={{ gridTemplateColumns: 'minmax(300px, 600px)', justifyContent: 'center' }}>
                     <div className="card" style={{ textAlign: 'center' }}>
@@ -92,7 +83,7 @@ const DoubtSolving = () => {
                                 <h3 style={{ margin: 0 }}>{matchedTutor.name}</h3>
                                 <p style={{ color: '#888', margin: '0.5rem 0 1.5rem' }}>Expert in {matchedTutor.specialization.join(', ')}</p>
 
-                                <button className="login-btn" style={{ background: '#4ade80', color: '#000', fontSize: '1.2rem', padding: '1rem' }} onClick={handleJoinCall}>
+                                <button className="login-btn" style={{ fontSize: '1.2rem', padding: '1rem' }} onClick={handleJoinCall}>
                                     <Video size={24} style={{ marginRight: '10px' }} /> Join Video Call
                                 </button>
                                 <button type="button" className="icon-btn" style={{ background: 'transparent', border: 'none', marginTop: '1rem', width: '100%' }} onClick={() => { setMatchedTutor(null); setAskMode(false); }}>Close</button>

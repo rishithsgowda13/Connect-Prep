@@ -4,7 +4,7 @@
   /* Dark Neo-Brutalist Palette */
   --bg-primary: #050505;
   /* Pitch Black */
-  --bg-secondary: #1a1a1a;
+  --bg-secondary: #2C2C2C;
   /* Dark Gray */
 
   --border-color: #ffffff;
@@ -34,8 +34,34 @@
   font-family: 'Space Grotesk', system-ui, sans-serif;
   line-height: 1.5;
   color: var(--text-primary);
-  background-color: var(--bg-primary);
+  /* Default app background matches primary */
+  --bg-app-background: var(--bg-primary);
+  /* Default card background matches secondary */
+  --bg-card: var(--bg-secondary);
+  background-color: var(--bg-app-background);
   font-size: 100%;
+}
+
+:root[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #F5F5F5;
+
+  /* Card background becomes grey */
+  --bg-card: #D1D5DB;
+
+  /* Whitesmoke Background */
+  --bg-app-background: #F5F5F5;
+
+  /* Ocean Blue Borders and Shadows replaced with Black */
+  --border-color: #000000;
+  --shadow-hard: 4px 4px 0px #000000;
+  --shadow-hover: 6px 6px 0px #000000;
+  --text-primary: #000000;
+  --text-secondary: #000000;
+  --text-inverse: #ffffff;
+
+  /* Black Accent */
+  --accent-primary: #000000;
 }
 
 body {
@@ -43,41 +69,125 @@ body {
   min-width: 320px;
   min-height: 100vh;
   /* Dot Matrix Pattern (White dots on Black) */
-  background-image: radial-gradient(#333 1px, transparent 1px);
+  min-height: 100vh;
+  /* Dot Matrix Pattern */
+  background: var(--bg-app-background);
+  /* Overlay dot pattern lightly if desired, or remove for cleaner look */
+  /* background-image: radial-gradient(var(--text-secondary) 1px, transparent 1px); */
   background-size: 24px 24px;
+  color: var(--text-primary);
 }
 
 /* Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-  border-left: 2px solid #fff;
+/* Global Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-::-webkit-scrollbar-track {
-  background: #000;
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-::-webkit-scrollbar-thumb {
-  background: #fff;
-  border: 2px solid #000;
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-weight: 700;
-  margin-top: 0;
-  color: #fff;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
+/* Utility Classes for Animations */
+.animate-enter {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  /* Starte hidden */
 }
 
-button {
-  cursor: pointer;
+.animate-scale {
+  animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+/* Stagger Delays */
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+/* Refined Button Interactions */
+button:active {
+  transform: translate(2px, 2px);
+  /* Reduce shadow on press for tactile feel */
+  box-shadow: 2px 2px 0px var(--shadow-hard) !important;
+}
+
+/* Smooth Transitions */
+a,
+button,
+.card,
+.stat-card,
+.short-card,
+input {
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .fade-in {
-  animation: none;
-  opacity: 1;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Scrollbar Polish */
+::-webkit-scrollbar {
+  width: 8px;
+  background: var(--bg-primary);
+  border-left: 2px solid var(--border-color);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-primary);
+  border: 2px solid var(--bg-primary);
+  border-radius: 0;
+  /* Square thumb for brutalist look */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
 }

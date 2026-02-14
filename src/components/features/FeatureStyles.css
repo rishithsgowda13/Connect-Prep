@@ -7,31 +7,145 @@
 .card,
 .paper-card,
 .stat-box {
-    background: #1a1a1a;
-    border: var(--border-width) solid #fff;
+    background: var(--bg-card);
+    border: var(--border-width) solid var(--border-color);
     border-radius: 8px;
     padding: 1.5rem;
-    color: #fff;
+    color: var(--text-primary);
     box-shadow: var(--shadow-hard);
     transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
 }
 
-.card:hover,
+/* Force light grey cards in light theme */
+:root[data-theme="light"] .card {
+    background: #D1D5DB;
+    color: #000000;
+    border: 2px solid #000000;
+}
+
+:root[data-theme="light"] .card h3 {
+    color: #000000;
+}
+
+:root[data-theme="light"] .card span {
+    color: #000000;
+}
+
+.paper-card {
+    background: #111;
+    border: 3px solid #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    color: #fff;
+    box-shadow: 8px 8px 0px #fff;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+.card:nth-child(odd) {
+    animation-delay: 100ms;
+}
+
+.card:nth-child(even) {
+    animation-delay: 200ms;
+}
+
+.card:hover {
+    transform: translate(-4px, -4px) scale(1.01);
+    box-shadow: 8px 8px 0px var(--shadow-hover);
+    border-color: var(--accent-primary);
+}
+
 .paper-card:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: var(--shadow-hover);
-    background: #202020;
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0px #fff;
+    border-color: #fff;
 }
 
 /* Revert text colors inside cards */
-.card h3,
-.paper-card h3 {
-    color: #fff;
+.card h3 {
+    color: var(--text-primary);
 }
 
-.card p,
+.paper-card h3 {
+    color: #fff;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+}
+
+.card p {
+    color: var(--text-secondary);
+}
+
 .paper-card p {
     color: #ccc;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.paper-card .meta {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+
+.paper-card .meta-subtitle {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.paper-card .tags-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.paper-card .tag {
+    background: #333;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.view-btn {
+    background: #000;
+    color: #fff;
+    border: none;
+    border-right: 3px solid #fff;
+    border-bottom: 3px solid #fff;
+    border-radius: 6px;
+    padding: 12px;
+    width: 100%;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+}
+
+.view-btn:hover {
+    background: #fbbf24;
+    color: #000;
+    transform: translate(-3px, -3px);
+    border-right: 3px solid #fff;
+    border-bottom: 3px solid #fff;
 }
 
 /* Grids */
@@ -52,9 +166,11 @@
 /* Technical Buttons */
 .login-btn,
 .download-btn {
-    background: #fff;
-    color: #000;
-    border: 2px solid #fff;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-right: 3px solid #fff;
+    border-bottom: 3px solid #fff;
     border-radius: 6px;
     padding: 12px 24px;
     font-family: 'JetBrains Mono', monospace;
@@ -65,36 +181,38 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    transition: all 0.1s;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .login-btn:hover,
 .download-btn:hover {
-    background: var(--accent-action);
+    background: #fbbf24;
     color: #000;
-    border-color: var(--accent-action);
-    box-shadow: 4px 4px 0px #fff;
-    transform: translate(-2px, -2px);
+    transform: translate(-3px, -3px);
+    border-right: 3px solid #fff;
+    border-bottom: 3px solid #fff;
 }
 
 .download-btn {
     background: #000;
     color: #fff;
-    border: 2px solid #fff;
+    border: none;
+    border-right: 3px solid #fff;
+    border-bottom: 3px solid #fff;
 }
 
 .icon-btn {
-    background: #000;
-    border: 2px solid #fff;
-    color: #fff;
+    background: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    color: var(--text-primary);
     border-radius: 6px;
     padding: 8px;
     transition: all 0.1s;
 }
 
 .icon-btn:hover {
-    background: #222;
-    box-shadow: 2px 2px 0px #fff;
+    background: var(--bg-secondary);
+    box-shadow: 2px 2px 0px var(--shadow-hard);
     transform: translate(-1px, -1px);
 }
 
@@ -102,9 +220,9 @@
 .filter-select,
 input,
 textarea {
-    background: #000 !important;
-    border: 2px solid #fff !important;
-    color: #fff !important;
+    background: var(--bg-primary) !important;
+    border: 2px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
     border-radius: 6px !important;
     padding: 12px !important;
     font-family: 'JetBrains Mono', monospace !important;
@@ -115,7 +233,7 @@ textarea {
 .filter-select:focus,
 input:focus,
 textarea:focus {
-    background: #111 !important;
+    background: var(--bg-secondary) !important;
     outline: none;
     border-color: var(--accent-primary) !important;
     box-shadow: 4px 4px 0px var(--accent-primary) !important;
@@ -163,16 +281,57 @@ textarea:focus {
     font-family: 'JetBrains Mono', monospace;
     font-size: 2.5rem;
     font-weight: 800;
-    color: #fff;
+    color: var(--text-primary);
 }
 
 /* Headers */
 .feature-header h1 {
     font-size: 2.5rem;
-    background: #000;
-    color: #fff;
+    background: var(--bg-primary);
+    color: var(--text-primary);
     display: inline-block;
-    border: 2px solid #fff;
+    border: 2px solid var(--border-color);
     padding: 0.5rem 1rem;
     box-shadow: 6px 6px 0px var(--accent-secondary);
+    animation: slideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Force light grey for paper-cards in light theme */
+:root[data-theme="light"] .paper-card {
+    background: #D1D5DB !important;
+    color: #000000 !important;
+    border: 3px solid #000000 !important;
+    box-shadow: 8px 8px 0px #000000 !important;
+}
+
+:root[data-theme="light"] .paper-card:hover {
+    box-shadow: 12px 12px 0px #000000 !important;
+    border-color: #000000 !important;
+}
+
+:root[data-theme="light"] .paper-card h3,
+:root[data-theme="light"] .paper-card p,
+:root[data-theme="light"] .paper-card .meta,
+:root[data-theme="light"] .paper-card .meta-subtitle,
+:root[data-theme="light"] .paper-card .tag {
+    color: #000000 !important;
+}
+
+:root[data-theme="light"] .paper-card .tag {
+    background: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Light theme: black borders on buttons (right+bottom only) */
+:root[data-theme="light"] .view-btn,
+:root[data-theme="light"] .login-btn,
+:root[data-theme="light"] .download-btn {
+    border-right: 3px solid #000 !important;
+    border-bottom: 3px solid #000 !important;
+}
+
+:root[data-theme="light"] .view-btn:hover,
+:root[data-theme="light"] .login-btn:hover,
+:root[data-theme="light"] .download-btn:hover {
+    border-right: 3px solid #000 !important;
+    border-bottom: 3px solid #000 !important;
 }
